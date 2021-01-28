@@ -3,10 +3,15 @@
  */
 package guru.springframework.spring5webapp.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  * @author EVOFORGE\tjtrabu
@@ -22,6 +27,10 @@ public class Publisher {
   private String city;
   private String state;
   private String zip;
+
+  @OneToMany
+  @JoinColumn(name = "publisher_id")
+  private Set<Book> books = new HashSet<>();
 
   public Publisher(String name, String addressLocal, String city, String state,
       String zip) {
@@ -114,5 +123,13 @@ public class Publisher {
     return "Publisher{id=" + id + ", name=" + name + ", addressLocal="
         + addressLocal + ", city=" + city + ", state=" + state + ", zip=" + zip
         + "}";
+  }
+
+  public Set<Book> getBooks() {
+    return books;
+  }
+
+  public void setBooks(Set<Book> books) {
+    this.books = books;
   }
 }
