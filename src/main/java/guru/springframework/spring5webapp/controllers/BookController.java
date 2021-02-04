@@ -20,6 +20,6 @@ public class BookController {
     // Adding all books in the book repository to the model to return to the
     // user.
     model.addAttribute("books", bookRepository.findAll());
-    return "books";
+    return "books/list";
   }
 }
